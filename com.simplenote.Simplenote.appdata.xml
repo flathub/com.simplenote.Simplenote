@@ -6,6 +6,7 @@
   <summary>The simplest way to keep notes</summary>
   <url type="homepage">https://simplenote.com</url>
   
+  <developer_name>Automattic Inc.</developer_name>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0-only</project_license>
   
@@ -32,17 +33,18 @@
   <launchable type="desktop-id">com.simplenote.Simplenote.desktop</launchable>
   <screenshots>
     <screenshot type="default">
-      <image>https://github.com/rhjhunt/flathub/raw/com.simplenote.Simplenote/screenshots/simplenote1.png</image>
+      <image>https://github.com/flathub/com.simplenote.Simplenote/raw/master/screenshots/simplenote1.png</image>
     </screenshot>
     <screenshot>
-      <image>https://github.com/rhjhunt/flathub/raw/com.simplenote.Simplenote/screenshots/simplenote2.png</image>
+      <image>https://github.com/flathub/com.simplenote.Simplenote/raw/master/screenshots/simplenote2.png</image>
     </screenshot>
     <screenshot>
-      <image>https://github.com/rhjhunt/flathub/raw/com.simplenote.Simplenote/screenshots/simplenote3.png</image>
+      <image>https://github.com/flathub/com.simplenote.Simplenote/raw/master/screenshots/simplenote3.png</image>
     </screenshot>
   </screenshots>
 
   <releases>
+    <release date="2020-11-16" version="2.1.0" />
     <release date="2020-10-28" version="2.0.0" />
   </releases>
 </component>
