@@ -62,8 +62,8 @@ modules:
       - type: file
         path: com.simplenote.Simplenote.png
       - type: archive
-        url: https://github.com/Automattic/simplenote-electron/releases/download/v2.5.0-beta1/Simplenote-linux-2.5.0-beta1-x64.tar.gz
-        sha256: ae95ede303cb8039ff635ae5137bb63b470b8ec1a8494b75640ee7f0ddbd710a
+        url: https://github.com/Automattic/simplenote-electron/releases/download/v2.6.0-beta1/Simplenote-linux-2.6.0-beta1-x64.tar.gz
+        sha256: e51d12fa0816830752c7daa46555065b8ab44e613c670aa2939eaa1e46bf92a5
         dest: main
       - type: script
         dest-filename: simplenote.sh
