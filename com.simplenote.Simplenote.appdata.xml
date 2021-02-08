@@ -44,6 +44,7 @@
   </screenshots>
 
   <releases>
+    <release date="2021-02-08" version="2.7.0-beta1" />
     <release date="2021-01-27" version="2.6.0-beta1" />
     <release date="2021-01-11" version="2.5.0-beta1" />
     <release date="2020-12-13" version="2.4.0-beta1" />
