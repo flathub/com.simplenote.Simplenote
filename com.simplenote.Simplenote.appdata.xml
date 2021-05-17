@@ -44,6 +44,7 @@
   </screenshots>
 
   <releases>
+    <release date="2021-05-17" version="2.11.0" />
     <release date="2021-05-02" version="2.10.0" />
     <release date="2021-04-06" version="2.9.0" />
     <release date="2021-03-22" version="2.8.0" />
