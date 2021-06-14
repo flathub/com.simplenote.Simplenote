@@ -62,14 +62,14 @@ modules:
       - type: file
         path: com.simplenote.Simplenote.png
       - type: archive
-        url: https://github.com/Automattic/simplenote-electron/releases/download/v2.12.0/Simplenote-linux-2.12.0-arm64.tar.gz
-        sha256: e894bbc195fe2028ca5948a2f2a56bf589d340c77ed2ac6fc397806a3f3bc30d
+        url: https://github.com/Automattic/simplenote-electron/releases/download/v2.13.0/Simplenote-linux-2.13.0-arm64.tar.gz
+        sha256: 92df9ceb35a52e2c7375a6e444fa6b496b27d9d82d607719463ef0243e398c86
         only-arches:
           - aarch64
         dest: main
       - type: archive
-        url: https://github.com/Automattic/simplenote-electron/releases/download/v2.12.0/Simplenote-linux-2.12.0-x64.tar.gz
-        sha256: b861a7404f6e062a7ec0376292a0899f56ee52f017d0ea6a951b4ae199f9ef00
+        url: https://github.com/Automattic/simplenote-electron/releases/download/v2.13.0/Simplenote-linux-2.13.0-x64.tar.gz
+        sha256: 67ee0daf9cc7e448f7490330ddda537027f9f1fcb06d1281008abd75b5ecaf99
         only-arches:
           - x86_64
         dest: main
