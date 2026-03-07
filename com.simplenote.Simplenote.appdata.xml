@@ -5,8 +5,12 @@
   <name>Simplenote</name>
   <summary>The simplest way to keep notes</summary>
   <url type="homepage">https://simplenote.com</url>
+  <url type="bugtracker">https://github.com/Automattic/simplenote-electron/issues</url>
+  <url type="vcs-browser">https://github.com/Automattic/simplenote-electron</url>
   
-  <developer_name>Automattic Inc.</developer_name>
+  <developer id="com.automattic">
+    <name>Automattic Inc.</name>
+  </developer>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0-only</project_license>
   
@@ -44,7 +48,12 @@
   </screenshots>
 
   <releases>
-    <release date="2021-10-18" version="2.21.0" /> 
+    <release date="2025-11-06" version="2.24.0" />
+    <release date="2025-03-11" version="2.23.2" />
+    <release date="2025-01-21" version="2.23.0" />
+    <release date="2024-09-24" version="2.22.2" />
+    <release date="2024-07-19" version="2.22.1" />
+    <release date="2021-10-18" version="2.21.0" />
     <release date="2021-10-04" version="2.20.0" />
     <release date="2021-09-21" version="2.19.1" />
     <release date="2021-09-20" version="2.19.0" />
