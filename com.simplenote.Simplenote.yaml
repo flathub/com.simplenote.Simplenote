@@ -13,7 +13,7 @@ finish-args:
   - --share=ipc
   - --share=network
   - --socket=cups
-  - --filesystem=xdg-config/Simplenote
+  # - --filesystem=xdg-config/Simplenote
   - --filesystem=xdg-documents
   - --filesystem=xdg-download
   - --talk-name=org.freedesktop.secrets
