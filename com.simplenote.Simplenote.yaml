@@ -21,18 +21,25 @@ modules:
     build-commands:
       - chmod +x Simplenote.AppImage
       - ./Simplenote.AppImage --appimage-extract
-      # Organizzazione file estratti
+      
+      # Organizzazione binari
       - mkdir -p /app/lib/simplenote
       - cp -R squashfs-root/* /app/lib/simplenote/
       - mkdir -p /app/bin
       - ln -s /app/lib/simplenote/simplenote /app/bin/simplenote
-      # Icone e Metadati
-      - mkdir -p /app/share/icons/hicolor
-      - cp -R squashfs-root/usr/share/icons/hicolor/* /app/share/icons/hicolor/
+      
+      # FIX ICONE: Copia e rinomina per l'esportazione Flatpak
+      - mkdir -p /app/share/icons/hicolor/512x512/apps
+      - cp squashfs-root/simplenote.png /app/share/icons/hicolor/512x512/apps/com.simplenote.Simplenote.png
+      
+      # FIX DESKTOP: Installazione e modifica chiave Icon
       - install -Dm644 squashfs-root/simplenote.desktop /app/share/applications/com.simplenote.Simplenote.desktop
+      - sed -i 's/Icon=simplenote/Icon=com.simplenote.Simplenote/' /app/share/applications/com.simplenote.Simplenote.desktop
+      
+      # Metadati e GTK
       - install -Dm644 com.simplenote.Simplenote.appdata.xml /app/share/metainfo/com.simplenote.Simplenote.appdata.xml
-      # Configurazione GTK (standard Flathub)
       - install -Dm644 gtk-settings.ini /app/share/gtk-3.0/gtk-settings.ini
+      
     sources:
       - type: file
         path: com.simplenote.Simplenote.appdata.xml
