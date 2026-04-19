@@ -1,87 +1,44 @@
 app-id: com.simplenote.Simplenote
-base: org.electronjs.Electron2.BaseApp
-base-version: '23.08'
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
-separate-locales: false
+base: org.electronjs.Electron2.BaseApp
+base-version: '24.08'
 command: simplenote
+separate-locales: false
 finish-args:
-  - --env=GTK_PATH=/app/lib/gtkmodules
-  - --socket=x11
-  - --device=dri
   - --share=ipc
+  - --socket=x11
+  - --socket=wayland
   - --share=network
-  - --socket=cups
-  - --filesystem=xdg-config/Simplenote
-  - --filesystem=xdg-documents
+  - --device=dri
+  - --talk-name=org.freedesktop.Notifications
   - --filesystem=xdg-download
-  - --talk-name=org.freedesktop.secrets
+
 modules:
-
-  - shared-modules/libsecret/libsecret.json
-
-  - name: libcups
-    make-args: [libs]
-    no-make-install: true
-    post-install:
-      - make install-headers install-libs
-    cleanup:
-      - /include
+  - name: simplenote
+    buildsystem: simple
+    build-commands:    
+      - chmod +x Simplenote.AppImage
+      - ./Simplenote.AppImage --appimage-extract
+      - cp -R squashfs-root/* /app/bin/
+      - mkdir -p /app/share/icons
+      - cp -R squashfs-root/usr/share/icons/hicolor /app/share/icons/
+      - install -Dm644 squashfs-root/simplenote.desktop /app/share/applications/com.simplenote.Simplenote.desktop
+      - install -Dm644 com.simplenote.Simplenote.appdata.xml /app/share/metainfo/com.simplenote.Simplenote.appdata.xml
     sources:
-      - type: archive
-        url: https://github.com/OpenPrinting/cups/releases/download/v2.4.7/cups-2.4.7-source.tar.gz
-        sha256: dd54228dd903526428ce7e37961afaed230ad310788141da75cebaa08362cf6c
+      - type: file
+        url: https://github.com/Automattic/simplenote-electron/releases/download/v2.24.0/Simplenote-linux-2.24.0-x86_64.AppImage
+        dest-filename: Simplenote.AppImage
+        sha256: 3c1357d56e8257a03a31676071d3bdcbe8a6ade1e30dc385de18288617939799
+      - type: file
+        path: com.simplenote.Simplenote.appdata.xml
+        
 
-  - name: gtk-cups-backend
-    buildsystem: meson
-    make-args: [modules/printbackends/libprintbackend-cups.so]
-    no-make-install: true
-    post-install:
-      - install -Dm 755 modules/printbackends/libprintbackend-cups.so -t /app/lib/gtkmodules/3.0.0/printbackends/
-    sources:
-      - type: git
-        url: https://gitlab.gnome.org/GNOME/gtk.git
-        tag: 3.24.38
-  
   - name: gtk-settings
     buildsystem: simple
     build-commands:
-      - install -Dm 644 gtk-settings.ini /app/etc/xdg/gtk-3.0/settings.ini
+      - install -Dm644 gtk-settings.ini /app/etc/gtk-3.0/settings.ini
     sources:
       - type: file
         path: gtk-settings.ini
-
-  - name: simplenote
-    buildsystem: simple
-    sources:
-      - type: file
-        path: com.simplenote.Simplenote.appdata.xml
-      - type: file
-        path: com.simplenote.Simplenote.desktop
-      - type: file
-        path: com.simplenote.Simplenote.png
-      - type: archive
-        url: https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-linux-2.21.0-arm64.tar.gz
-        sha256: 0a82f99b73061d7583ec9dfbd49f9133f7f79c061825bfef6836687fb9374d5e
-        only-arches:
-          - aarch64
-        dest: main
-      - type: archive
-        url: https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-linux-2.21.0-x64.tar.gz
-        sha256: e4e7482029628ce52c7a42a1cec9822785b7118aeb3f3ae4007d7da386dd1a3e
-        only-arches:
-          - x86_64
-        dest: main
-      - type: script
-        dest-filename: simplenote.sh
-        commands:
-          - "export TMPDIR=\"$XDG_RUNTIME_DIR/app/$FLATPAK_ID\""
-          - "exec zypak-wrapper /app/Simplenote/simplenote \"$@\""
-    build-commands:
-      - mkdir -p /app/Simplenote
-      - cp -ra main/* /app/Simplenote/
-      - install simplenote.sh /app/bin/simplenote
-      - install -Dm644 com.simplenote.Simplenote.desktop /app/share/applications/com.simplenote.Simplenote.desktop
-      - install -Dm644 com.simplenote.Simplenote.appdata.xml /app/share/appdata/com.simplenote.Simplenote.appdata.xml
-      - install -Dm644 com.simplenote.Simplenote.png /app/share/icons/hicolor/256x256/apps/com.simplenote.Simplenote.png
