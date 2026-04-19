@@ -25,6 +25,7 @@ modules:
       - mkdir -p /app/share/icons
       - cp -R squashfs-root/usr/share/icons/hicolor /app/share/icons/
       - install -Dm644 squashfs-root/simplenote.desktop /app/share/applications/com.simplenote.Simplenote.desktop
+      - install -Dm644 gtk-settings.ini /app/share/gtk-3.0/gtk-settings.ini
       - install -Dm644 com.simplenote.Simplenote.appdata.xml /app/share/metainfo/com.simplenote.Simplenote.appdata.xml
     sources:
       - type: file
