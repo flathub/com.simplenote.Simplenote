@@ -8,6 +8,7 @@ command: simplenote
 separate-locales: false
 finish-args:
   - --share=ipc
+  - --socket=wayland
   - --socket=fallback-x11
   - --share=network
   - --device=dri
