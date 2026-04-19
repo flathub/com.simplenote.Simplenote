@@ -28,12 +28,13 @@ modules:
       - mkdir -p /app/bin
       - ln -s /app/lib/simplenote/simplenote /app/bin/simplenote
       
-      # FIX ICONE: Copia e rinomina per l'esportazione Flatpak
-      - mkdir -p /app/share/icons/hicolor/512x512/apps
-      - cp squashfs-root/simplenote.png /app/share/icons/hicolor/512x512/apps/com.simplenote.Simplenote.png
+      # FIX ICONA: Spostata in 'scalable' perché l'immagine è 1024x1024
+      - mkdir -p /app/share/icons/hicolor/scalable/apps
+      - cp squashfs-root/simplenote.png /app/share/icons/hicolor/scalable/apps/com.simplenote.Simplenote.png
       
-      # FIX DESKTOP: Installazione e modifica chiave Icon
+      # FIX DESKTOP e EXE: Corretto il percorso dell'eseguibile e l'icona
       - install -Dm644 squashfs-root/simplenote.desktop /app/share/applications/com.simplenote.Simplenote.desktop
+      - sed -i 's/Exec=AppRun/Exec=simplenote/' /app/share/applications/com.simplenote.Simplenote.desktop
       - sed -i 's/Icon=simplenote/Icon=com.simplenote.Simplenote/' /app/share/applications/com.simplenote.Simplenote.desktop
       
       # Metadati e GTK
