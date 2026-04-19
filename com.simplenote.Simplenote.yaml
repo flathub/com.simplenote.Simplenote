@@ -18,28 +18,33 @@ finish-args:
 modules:
   - name: simplenote
     buildsystem: simple
-    build-commands:    
+    build-commands:
       - chmod +x Simplenote.AppImage
       - ./Simplenote.AppImage --appimage-extract
-      - cp -R squashfs-root/* /app/bin/
-      - mkdir -p /app/share/icons
-      - cp -R squashfs-root/usr/share/icons/hicolor /app/share/icons/
+      # Organizzazione file estratti
+      - mkdir -p /app/lib/simplenote
+      - cp -R squashfs-root/* /app/lib/simplenote/
+      - mkdir -p /app/bin
+      - ln -s /app/lib/simplenote/simplenote /app/bin/simplenote
+      # Icone e Metadati
+      - mkdir -p /app/share/icons/hicolor
+      - cp -R squashfs-root/usr/share/icons/hicolor/* /app/share/icons/hicolor/
       - install -Dm644 squashfs-root/simplenote.desktop /app/share/applications/com.simplenote.Simplenote.desktop
-      - install -Dm644 gtk-settings.ini /app/share/gtk-3.0/gtk-settings.ini
       - install -Dm644 com.simplenote.Simplenote.appdata.xml /app/share/metainfo/com.simplenote.Simplenote.appdata.xml
+      # Configurazione GTK (standard Flathub)
+      - install -Dm644 gtk-settings.ini /app/share/gtk-3.0/gtk-settings.ini
     sources:
       - type: file
+        path: com.simplenote.Simplenote.appdata.xml
+      - type: file
+        path: gtk-settings.ini
+      - type: file
+        only-arches: [x86_64]
         url: https://github.com/Automattic/simplenote-electron/releases/download/v2.24.0/Simplenote-linux-2.24.0-x86_64.AppImage
         dest-filename: Simplenote.AppImage
         sha256: 3c1357d56e8257a03a31676071d3bdcbe8a6ade1e30dc385de18288617939799
       - type: file
-        path: com.simplenote.Simplenote.appdata.xml
-        
-
-  - name: gtk-settings
-    buildsystem: simple
-    build-commands:
-      - install -Dm644 gtk-settings.ini /app/etc/gtk-3.0/settings.ini
-    sources:
-      - type: file
-        path: gtk-settings.ini
+        only-arches: [aarch64]
+        url: https://github.com/Automattic/simplenote-electron/releases/download/v2.24.0/Simplenote-linux-2.24.0-arm64.AppImage
+        dest-filename: Simplenote.AppImage
+        sha256: 76f626229497d396a4073d843477834579c3f412f7a5b35728d8b6c434710123
