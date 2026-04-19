@@ -42,9 +42,9 @@ modules:
         only-arches: [x86_64]
         url: https://github.com/Automattic/simplenote-electron/releases/download/v2.24.0/Simplenote-linux-2.24.0-x86_64.AppImage
         dest-filename: Simplenote.AppImage
-        sha256: 6b96193932fdceb3e88fd91966a6ea232e77a1ff4ee6609dac6506428f6f16e9
+        sha256: 3c1357d56e8257a03a31676071d3bdcbe8a6ade1e30dc385de18288617939799
       - type: file
         only-arches: [aarch64]
         url: https://github.com/Automattic/simplenote-electron/releases/download/v2.24.0/Simplenote-linux-2.24.0-arm64.AppImage
         dest-filename: Simplenote.AppImage
-        sha256: 6b96193932fdceb3e88fd91966a6ea232e77a1ff4ee6609dac6506428f6f16e9
+        sha256: 3c1357d56e8257a03a31676071d3bdcbe8a6ade1e30dc385de18288617939799
