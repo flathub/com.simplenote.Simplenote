@@ -28,11 +28,11 @@ modules:
       - mkdir -p /app/bin
       - ln -s /app/lib/simplenote/simplenote /app/bin/simplenote
       
-      # FIX ICONA: Spostata in 'scalable' perché l'immagine è 1024x1024
-      - mkdir -p /app/share/icons/hicolor/scalable/apps
-      - cp squashfs-root/simplenote.png /app/share/icons/hicolor/scalable/apps/com.simplenote.Simplenote.png
+      # FIX ICONA DEFINITIVO: Usiamo quella da 512x512 specifica per evitare il blocco linter
+      - mkdir -p /app/share/icons/hicolor/512x512/apps
+      - cp squashfs-root/usr/share/icons/hicolor/512x512/apps/simplenote.png /app/share/icons/hicolor/512x512/apps/com.simplenote.Simplenote.png
       
-      # FIX DESKTOP e EXE: Corretto il percorso dell'eseguibile e l'icona
+      # FIX DESKTOP: Installazione e correzione puntamenti
       - install -Dm644 squashfs-root/simplenote.desktop /app/share/applications/com.simplenote.Simplenote.desktop
       - sed -i 's/Exec=AppRun/Exec=simplenote/' /app/share/applications/com.simplenote.Simplenote.desktop
       - sed -i 's/Icon=simplenote/Icon=com.simplenote.Simplenote/' /app/share/applications/com.simplenote.Simplenote.desktop
