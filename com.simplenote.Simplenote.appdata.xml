@@ -5,6 +5,7 @@
   <name>Simplenote</name>
   <summary>The simplest way to keep notes</summary>
   <url type="homepage">https://simplenote.com</url>
+  <url type="vcs-browser">https://github.com/Automattic/simplenote-electron</url>
   
   <developer_name>Automattic Inc.</developer_name>
   <metadata_license>CC0-1.0</metadata_license>
@@ -48,7 +49,7 @@
   </screenshots>
 
   <releases>
-    <release date="2024-04-20" version="2.24.0" />
+    <release date="2026-04-20" version="2.24.0" />
     <release date="2021-10-18" version="2.21.0" /> 
     <release date="2021-10-04" version="2.20.0" />
     <release date="2021-09-21" version="2.19.1" />
@@ -72,9 +73,5 @@
     <release date="2020-11-30" version="2.2.0" />
     <release date="2020-11-16" version="2.1.0" />
   </releases>
-  
-  <metadata>
-    <url type="vcs-browser">https://github.com/Automattic/simplenote-electron</url>
-  </metadata>  
-    
-</component>
+</componen
+  t>
