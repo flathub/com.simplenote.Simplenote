@@ -17,7 +17,7 @@ This repository contains the manifest and necessary files to package Simplenote 
 This package uses the official AppImage from Automattic to ensure maximum compatibility and stability.
 
 ### Technical Details:
-* **Runtime:** Freedesktop 24.08
+* **Runtime:** Freedesktop 25.08
 * **Base:** Electron
 * **Architecture:** x86_64 and aarch64
 
@@ -25,10 +25,9 @@ This package uses the official AppImage from Automattic to ensure maximum compat
 If you want to test this build on your local machine (e.g., Linux Mint), ensure you have `flatpak-builder` installed:
 
 ```zsh
-# Clone the repository
+# Clone the repository (replace with your username)
 git clone --recursive [https://github.com/tuo-username/com.simplenote.Simplenote.git](https://github.com/tuo-username/com.simplenote.Simplenote.git)
 cd com.simplenote.Simplenote
 
 # Build and install locally
-flatpak-builder --user --install --force-clean build com.simplenote.Simpleno
-te.yaml
+flatpak-builder --user --install --force-clean build com.simplenote.Simplenote.yaml
