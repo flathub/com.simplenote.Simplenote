@@ -14,8 +14,11 @@ finish-args:
   - --device=dri
   - --talk-name=org.freedesktop.Notifications
   - --filesystem=xdg-download
+  # CUPS disabilitato implicitamente non aggiungendo il socket dedicato
 
 modules:
+  # Modulo libsecret rimosso: fornito nativamente dalla runtime Freedesktop 24.08
+
   - name: simplenote
     buildsystem: simple
     build-commands:
@@ -28,11 +31,11 @@ modules:
       - mkdir -p /app/bin
       - ln -s /app/lib/simplenote/simplenote /app/bin/simplenote
       
-      # FIX ICONA DEFINITIVO: Usiamo quella da 512x512 specifica per evitare il blocco linter
+      # FIX ICONA: Usiamo la 512x512 interna per conformità linter
       - mkdir -p /app/share/icons/hicolor/512x512/apps
       - cp squashfs-root/usr/share/icons/hicolor/512x512/apps/simplenote.png /app/share/icons/hicolor/512x512/apps/com.simplenote.Simplenote.png
       
-      # FIX DESKTOP: Installazione e correzione puntamenti
+      # FIX DESKTOP: Installazione e correzione puntamenti (Exec e Icon)
       - install -Dm644 squashfs-root/simplenote.desktop /app/share/applications/com.simplenote.Simplenote.desktop
       - sed -i 's/Exec=AppRun/Exec=simplenote/' /app/share/applications/com.simplenote.Simplenote.desktop
       - sed -i 's/Icon=simplenote/Icon=com.simplenote.Simplenote/' /app/share/applications/com.simplenote.Simplenote.desktop
