@@ -52,7 +52,17 @@
   </recommends>
   
   <releases>
-    <release date="2026-04-20" version="2.24.0" />
+    <release date="2025-11-20" version="2.24.0">
+      <description>
+        <p>This release introduces new features and important fixes:</p>
+        <ul>
+          <li>Implemented support for importing notes from ZIP files.</li>
+          <li>Fixed an issue where paste was not working in the context menu.</li>
+          <li>Enabled paste functionality in browsers.</li>
+          <li>General stability improvements and internal dependency updates.</li>
+        </ul>
+      </description>
+    </release>
     <release date="2021-10-18" version="2.21.0" /> 
     <release date="2021-10-04" version="2.20.0" />
     <release date="2021-09-21" version="2.19.1" />
