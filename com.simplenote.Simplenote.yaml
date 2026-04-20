@@ -28,16 +28,16 @@ modules:
       - mkdir -p /app/bin
       - ln -s /app/lib/simplenote/simplenote /app/bin/simplenote
       
-      # ICON FIX: Using internal 512x512 icon for linter compliance
-      - mkdir -p /app/share/icons/hicolor/512x512/apps
-      - cp squashfs-root/usr/share/icons/hicolor/512x512/apps/simplenote.png /app/share/icons/hicolor/512x512/apps/com.simplenote.Simplenote.png
+      # ICON INSTALLATION: Properly named and sized for linter compliance
+      # Ensuring the 512x512 icon is installed to the correct path
+      - install -Dm644 squashfs-root/usr/share/icons/hicolor/512x512/apps/simplenote.png /app/share/icons/hicolor/512x512/apps/com.simplenote.Simplenote.png
       
-      # DESKTOP FIX: Installation and path correction (Exec and Icon)
+      # DESKTOP FILE: Installation and path corrections
       - install -Dm644 squashfs-root/simplenote.desktop /app/share/applications/com.simplenote.Simplenote.desktop
       - sed -i 's/Exec=AppRun/Exec=simplenote/' /app/share/applications/com.simplenote.Simplenote.desktop
       - sed -i 's/Icon=simplenote/Icon=com.simplenote.Simplenote/' /app/share/applications/com.simplenote.Simplenote.desktop
       
-      # Metadata and GTK settings
+      # Metadata and configuration files
       - install -Dm644 com.simplenote.Simplenote.appdata.xml /app/share/metainfo/com.simplenote.Simplenote.appdata.xml
       - install -Dm644 gtk-settings.ini /app/share/gtk-3.0/gtk-settings.ini
       
