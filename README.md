@@ -22,11 +22,13 @@ This package uses the official AppImage from Automattic to ensure maximum compat
 * **Architecture:** x86_64 and aarch64
 
 ## How to build locally
-If you want to test this build on your local machine (e.g., Linux Mint), ensure you have `flatpak-builder` installed:
+If you want to test this build on your local machine (e.g., Linux Mint), ensure you have `flatpak-builder` installed. 
+
+**Note:** Ensure you clone with `--recursive` to include the `shared-modules` submodule.
 
 ```zsh
-# Clone the repository (replace with your username)
-git clone --recursive [https://github.com/tuo-username/com.simplenote.Simplenote.git](https://github.com/tuo-username/com.simplenote.Simplenote.git)
+# Clone the repository
+git clone --recursive [https://github.com/flathub/com.simplenote.Simplenote.git](https://github.com/flathub/com.simplenote.Simplenote.git)
 cd com.simplenote.Simplenote
 
 # Build and install locally
