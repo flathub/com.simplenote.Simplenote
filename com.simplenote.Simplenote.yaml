@@ -19,36 +19,37 @@ finish-args:
   - --talk-name=org.freedesktop.secrets
 modules:
 
-  # - name: libcups
-  #   make-args: [libs]
-  #   no-make-install: true
-  #   post-install:
-  #     - make install-headers install-libs
-  #   cleanup:
-  #     - /include
-  #   sources:
-  #     - type: archive
-  #       url: https://github.com/OpenPrinting/cups/releases/download/v2.4.7/cups-2.4.7-source.tar.gz
-  #       sha256: dd54228dd903526428ce7e37961afaed230ad310788141da75cebaa08362cf6c
+  - name: libcups
+    make-args: [libs]
+    no-make-install: true
+    post-install:
+      - make install-headers install-libs
+    cleanup:
+      - /include
+    sources:
+      - type: archive
+        url: https://github.com/OpenPrinting/cups/releases/download/v2.4.17/cups-2.4.17-source.tar.gz
+        sha256: 89c703238de210d4f4f4e5d4269e3d60c4b2f487aad75a8a1eaecd659e4d0b77
 
-  # - name: gtk-cups-backend
-  #   buildsystem: meson
-  #   make-args: [modules/printbackends/libprintbackend-cups.so]
-  #   no-make-install: true
-  #   post-install:
-  #     - install -Dm 755 modules/printbackends/libprintbackend-cups.so -t /app/lib/gtkmodules/3.0.0/printbackends/
-  #   sources:
-  #     - type: git
-  #       url: https://gitlab.gnome.org/GNOME/gtk.git
-  #       tag: 3.24.38
-  
-  # - name: gtk-settings
-  #   buildsystem: simple
-  #   build-commands:
-  #     - install -Dm 644 gtk-settings.ini /app/etc/xdg/gtk-3.0/settings.ini
-  #   sources:
-  #     - type: file
-  #       path: gtk-settings.ini
+  - name: gtk-cups-backend
+    buildsystem: meson
+    make-args: [modules/printbackends/libprintbackend-cups.so]
+    no-make-install: true
+    post-install:
+      - install -Dm 755 modules/printbackends/libprintbackend-cups.so -t /app/lib/gtkmodules/3.0.0/printbackends/
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/GNOME/gtk.git
+        tag: 3.24.52
+        commit: 6a0b360d473f7c546314738c0c8dd9829eb9d3c2
+
+  - name: gtk-settings
+    buildsystem: simple
+    build-commands:
+      - install -Dm 644 gtk-settings.ini /app/etc/xdg/gtk-3.0/settings.ini
+    sources:
+      - type: file
+        path: gtk-settings.ini
 
   - name: simplenote
     buildsystem: simple
