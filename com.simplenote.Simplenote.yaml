@@ -12,10 +12,37 @@ finish-args:
   - --socket=fallback-x11
   - --share=network
   - --device=dri
+  - --socket=cups
   - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.freedesktop.secrets
+  - --filesystem=xdg-documents
   - --filesystem=xdg-download
 
 modules:
+  - name: libcups
+    make-args: [libs]
+    no-make-install: true
+    post-install:
+      - make install-headers install-libs
+    cleanup:
+      - /include
+    sources:
+      - type: archive
+        url: https://github.com/OpenPrinting/cups/releases/download/v2.4.17/cups-2.4.17-source.tar.gz
+        sha256: 89c703238de210d4f4f4e5d4269e3d60c4b2f487aad75a8a1eaecd659e4d0b77
+
+  - name: gtk-cups-backend
+    buildsystem: meson
+    make-args: [modules/printbackends/libprintbackend-cups.so]
+    no-make-install: true
+    post-install:
+      - install -Dm 755 modules/printbackends/libprintbackend-cups.so -t /app/lib/gtkmodules/3.0.0/printbackends/
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/GNOME/gtk.git
+        tag: 3.24.52
+        commit: 6a0b360d473f7c546314738c0c8dd9829eb9d3c2
+
   - name: simplenote
     buildsystem: simple
     build-commands:
@@ -28,18 +55,17 @@ modules:
       - mkdir -p /app/bin
       - ln -s /app/lib/simplenote/simplenote /app/bin/simplenote
       
-      # ICON INSTALLATION: Properly named and sized for linter compliance
-      # Ensuring the 512x512 icon is installed to the correct path
+      # ICON INSTALLATION
       - install -Dm644 squashfs-root/usr/share/icons/hicolor/512x512/apps/simplenote.png /app/share/icons/hicolor/512x512/apps/com.simplenote.Simplenote.png
       
-      # DESKTOP FILE: Installation and path corrections
+      # DESKTOP FILE
       - install -Dm644 squashfs-root/simplenote.desktop /app/share/applications/com.simplenote.Simplenote.desktop
       - sed -i 's/Exec=AppRun/Exec=simplenote/' /app/share/applications/com.simplenote.Simplenote.desktop
       - sed -i 's/Icon=simplenote/Icon=com.simplenote.Simplenote/' /app/share/applications/com.simplenote.Simplenote.desktop
       
       # Metadata and configuration files
       - install -Dm644 com.simplenote.Simplenote.appdata.xml /app/share/metainfo/com.simplenote.Simplenote.appdata.xml
-      - install -Dm644 gtk-settings.ini /app/share/gtk-3.0/gtk-settings.ini
+      - install -Dm644 gtk-settings.ini /app/etc/xdg/gtk-3.0/settings.ini
       
     sources:
       - type: file
